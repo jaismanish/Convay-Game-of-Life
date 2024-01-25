@@ -1,5 +1,5 @@
 public class GameOfLife {
-    private final int[][] grid;
+    private int[][] grid;
 
     public GameOfLife(int row, int column){
         this.grid = new int[row][column];
@@ -12,7 +12,26 @@ public class GameOfLife {
     }
 
     public void proceed() {
-        grid[1][1] = 0;
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int[][] nextGrid = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                int liveNeighbors = countLiveNeighbors(i, j);
+                if (grid[i][j] == 1) {
+                    if (liveNeighbors == 2 || liveNeighbors == 3) {
+                        nextGrid[i][j] = 1;
+                    }
+                }
+            }
+        }
+
+        grid = nextGrid;
+    }
+
+    private int countLiveNeighbors(int row, int col) {
+        return 2;
     }
 
     public int[][] getGrid() {
