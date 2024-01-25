@@ -5,6 +5,7 @@ public class GameOfLife {
         this.board = new int[row][column];
     }
 
+
     public int[][] getBoard() {
         return board;
     }
