@@ -8,11 +8,11 @@ public class GameOfLifeTest {
     @Test
     void testInitializeBoard() {
         GameOfLife game = new GameOfLife(5,6);
-        int[][] initialBoard = game.getBoard();
+        int[][] initialGrid = game.getGrid();
 
-        assertNotNull(initialBoard);
-        assertEquals(5, initialBoard.length);
-        assertEquals(6, initialBoard[0].length);
+        assertNotNull(initialGrid);
+        assertEquals(5, initialGrid.length);
+        assertEquals(6, initialGrid[0].length);
     }
 
     @Test
