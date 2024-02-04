@@ -12,4 +12,17 @@ class CellTest {
         assertTrue(cell.isAlive());
     }
 
+    @Test
+    void cellCanBeInitializedAsDead() {
+        Cell cell = new Cell(false);
+        assertFalse(cell.isAlive());
+    }
+
+    @Test
+    void cellStateCanBeChanged() {
+        Cell cell = new Cell(true);
+        cell.setAlive(false);
+        assertFalse(cell.isAlive());
+    }
+
 }
