@@ -3,6 +3,8 @@ package src.test;
 import org.junit.jupiter.api.Test;
 import src.main.Cell;
 
+import java.lang.reflect.Field;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CellTest {
@@ -32,4 +34,43 @@ class CellTest {
         cell.setAlive(true);
         assertEquals("1", cell.toString());
     }
+    @Test
+    void testCellGetToAliveWith3Neighbors() {
+        Cell cell = new Cell();
+
+        cell.state(3);
+        boolean actual = cell.isAlive();
+
+        assertTrue(actual);
+    }
+
+    @Test
+    public void testAliveCellChangesToDeadWith1AliveNeighbour() throws NoSuchFieldException, IllegalAccessException {
+        Cell cell = new Cell();
+        cell.state(1);
+        boolean actual = cell.isAlive();
+
+        assertFalse(actual);
+    }
+
+    @Test
+    void testAliveCellWithZeroAliveNeighborsChangesToDead() throws NoSuchFieldException, IllegalAccessException {
+        Cell cell = new Cell();
+        cell.state(0);
+        boolean actual = cell.isAlive();
+
+        assertFalse(actual);
+    }
+    @Test
+    void testAliveCellValueIsStar() throws NoSuchFieldException, IllegalAccessException {
+        Cell cell = new Cell();
+        Field aliveField = Cell.class.getDeclaredField("isAlive");
+        aliveField.setAccessible(true);
+        aliveField.set(cell, true);
+
+        String actual = cell.toString();
+
+        assertEquals("1", actual);
+    }
+
 }

@@ -40,7 +40,7 @@ public class Board {
     public void print() {
         for (Cell[] row : cells) {
             for (Cell cell : row) {
-                System.out.print(cell.isAlive() ? "O " : ". ");
+                System.out.print(" " + cell.toString() + " ");
             }
             System.out.println();
         }
