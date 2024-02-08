@@ -14,6 +14,13 @@ public class Cell {
         return this.isAlive;
     }
 
+    public static Cell createAliveCell() {
+        Cell cell = new Cell();
+        cell.isAlive = true;
+        return cell;
+    }
+
+
     public void state(int aliveNeighbours) {
         if (!this.isAlive() && aliveNeighbours == 3) {
             this.isAlive = true;

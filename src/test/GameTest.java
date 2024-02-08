@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GameTest {
     @Test
     void testInitializedGame() {
-        Board board = new Board(8,8);
+        Board board = new Board(8,8, 0.3);
         Game game = new Game(board);
 
         assertNotNull(game);

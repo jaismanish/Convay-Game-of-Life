@@ -62,7 +62,7 @@ class CellTest {
         assertFalse(actual);
     }
     @Test
-    void testAliveCellValueIsStar() throws NoSuchFieldException, IllegalAccessException {
+    void testAliveCellValue() throws NoSuchFieldException, IllegalAccessException {
         Cell cell = new Cell();
         Field aliveField = Cell.class.getDeclaredField("isAlive");
         aliveField.setAccessible(true);
@@ -71,6 +71,21 @@ class CellTest {
         String actual = cell.toString();
 
         assertEquals("1", actual);
+    }
+
+    @Test
+    void testCreateLiveCell() {
+        Cell cell = Cell.createAliveCell();
+        assertTrue(cell.isAlive());
+    }
+
+    @Test
+    void testCreateLiveCellWithoutChangingOtherCells() {
+        Cell cell1 = new Cell();
+        Cell cell2 = Cell.createAliveCell();
+
+        assertFalse(cell1.isAlive());
+        assertTrue(cell2.isAlive());
     }
 
 }

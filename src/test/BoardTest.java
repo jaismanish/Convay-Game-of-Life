@@ -9,35 +9,32 @@ public class BoardTest {
 
     @Test
     void testBoardCreatedWithValidSize() {
-        Board board = new Board(8, 8);
+        Board board = new Board(10, 12, 0.3);
         assertNotNull(board);
     }
 
     @Test
     void testBoardCreatedWithInValidSize(){
-        assertThrows(IllegalArgumentException.class, () -> new Board(0, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Board(0, 8));
-        assertThrows(IllegalArgumentException.class, () -> new Board(8, 0));
-        assertThrows(IllegalArgumentException.class, () -> new Board(-8, 8));
-        assertThrows(IllegalArgumentException.class, () -> new Board(8, -8));
+        assertThrows(IllegalArgumentException.class, () -> new Board(0, 0, 0.3));
+        assertThrows(IllegalArgumentException.class, () -> new Board(0, 8, 0.3));
+        assertThrows(IllegalArgumentException.class, () -> new Board(8, 0, 0.3));
+        assertThrows(IllegalArgumentException.class, () -> new Board(-8, 8, 0.3));
+        assertThrows(IllegalArgumentException.class, () -> new Board(8, -8, 0.3));
     }
     @Test
     void testSeedingWithZeroSeedPercent_ShouldThrowException() {
-        Board board = new Board(8, 8);
-        double seedPercentage = 0.0;
-        assertThrows(IllegalArgumentException.class, () -> board.seedPopulation(seedPercentage));
+
+        assertThrows(IllegalArgumentException.class, () -> new Board(8, 8, 0.0));
     }
     @Test
     void testSeedingWithNegativeSeedPercent_ShouldThrowException() {
-        Board board = new Board(8, 8);
-        double seedPercentage = -0.3;
-        assertThrows(IllegalArgumentException.class, () -> board.seedPopulation(seedPercentage));
+        assertThrows(IllegalArgumentException.class, () -> new Board(8, 8, -0.3));
     }
     @Test
     void testSeedPopulation() {
-        Board board = new Board(8, 8);
+        Board board = new Board(8, 8, 0.3);
         int alive = 0;
-        board.seedPopulation(0.3);
+
 
         for (int i = 0; i < board.cells().length; i++) {
             for (int j = 0; j < board.cells()[0].length; j++) {
